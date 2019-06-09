@@ -12,6 +12,7 @@
 		B609389F22ACF2E5008B7C1E /* gtest.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = B609389D22ACF2CA008B7C1E /* gtest.framework */; };
 		B60938A122AD7DE0008B7C1E /* IntegerTests.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B60938A022AD7DE0008B7C1E /* IntegerTests.cpp */; };
 		B60938A322AD7F43008B7C1E /* SimplePrimitiveTypeTests.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B60938A222AD7F43008B7C1E /* SimplePrimitiveTypeTests.cpp */; };
+		B60938A522AD863C008B7C1E /* ComplexClassTests.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B60938A422AD863C008B7C1E /* ComplexClassTests.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -58,6 +59,7 @@
 		B609389D22ACF2CA008B7C1E /* gtest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = gtest.framework; sourceTree = "<group>"; };
 		B60938A022AD7DE0008B7C1E /* IntegerTests.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = IntegerTests.cpp; sourceTree = "<group>"; };
 		B60938A222AD7F43008B7C1E /* SimplePrimitiveTypeTests.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = SimplePrimitiveTypeTests.cpp; sourceTree = "<group>"; };
+		B60938A422AD863C008B7C1E /* ComplexClassTests.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = ComplexClassTests.cpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -95,6 +97,7 @@
 			children = (
 				B609387C22ACF056008B7C1E /* main.cpp */,
 				B60938A222AD7F43008B7C1E /* SimplePrimitiveTypeTests.cpp */,
+				B60938A422AD863C008B7C1E /* ComplexClassTests.cpp */,
 				B60938A022AD7DE0008B7C1E /* IntegerTests.cpp */,
 			);
 			name = tests;
@@ -233,6 +236,7 @@
 			files = (
 				B609387D22ACF056008B7C1E /* main.cpp in Sources */,
 				B60938A322AD7F43008B7C1E /* SimplePrimitiveTypeTests.cpp in Sources */,
+				B60938A522AD863C008B7C1E /* ComplexClassTests.cpp in Sources */,
 				B60938A122AD7DE0008B7C1E /* IntegerTests.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
