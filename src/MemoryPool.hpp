@@ -9,7 +9,7 @@
 #ifndef MemoryPool_hpp
 #define MemoryPool_hpp
 
-#include <iostream>
+#include <thread>
 
 template <class ELEM_TYPE>
 class MemoryPool {
