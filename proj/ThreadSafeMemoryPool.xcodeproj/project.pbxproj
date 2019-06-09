@@ -25,6 +25,7 @@
 /* Begin PBXFileReference section */
 		B609387122ACEFF0008B7C1E /* ThreadSafeMemoryPool */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = ThreadSafeMemoryPool; sourceTree = BUILT_PRODUCTS_DIR; };
 		B609387C22ACF056008B7C1E /* main.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
+		B609387F22ACF18C008B7C1E /* MemoryPool.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = MemoryPool.hpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -41,6 +42,7 @@
 		B609386822ACEFF0008B7C1E = {
 			isa = PBXGroup;
 			children = (
+				B609387E22ACF18C008B7C1E /* src */,
 				B609387B22ACF056008B7C1E /* tests */,
 				B609387222ACEFF0008B7C1E /* Products */,
 			);
@@ -61,6 +63,15 @@
 			);
 			name = tests;
 			path = ../tests;
+			sourceTree = "<group>";
+		};
+		B609387E22ACF18C008B7C1E /* src */ = {
+			isa = PBXGroup;
+			children = (
+				B609387F22ACF18C008B7C1E /* MemoryPool.hpp */,
+			);
+			name = src;
+			path = ../src;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
