@@ -14,6 +14,7 @@
 		B60938A322AD7F43008B7C1E /* SimplePrimitiveTypeTests.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B60938A222AD7F43008B7C1E /* SimplePrimitiveTypeTests.cpp */; };
 		B60938A522AD863C008B7C1E /* ComplexClassTests.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B60938A422AD863C008B7C1E /* ComplexClassTests.cpp */; };
 		B60938A722ADE786008B7C1E /* MemoryPoolTests.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B60938A622ADE786008B7C1E /* MemoryPoolTests.cpp */; };
+		B60938A922ADF9C5008B7C1E /* ComplexClass.hpp in Sources */ = {isa = PBXBuildFile; fileRef = B60938A822ADF9C5008B7C1E /* ComplexClass.hpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -62,6 +63,7 @@
 		B60938A222AD7F43008B7C1E /* SimplePrimitiveTypeTests.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = SimplePrimitiveTypeTests.cpp; sourceTree = "<group>"; };
 		B60938A422AD863C008B7C1E /* ComplexClassTests.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = ComplexClassTests.cpp; sourceTree = "<group>"; };
 		B60938A622ADE786008B7C1E /* MemoryPoolTests.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = MemoryPoolTests.cpp; sourceTree = "<group>"; };
+		B60938A822ADF9C5008B7C1E /* ComplexClass.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = ComplexClass.hpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -101,6 +103,7 @@
 				B60938A622ADE786008B7C1E /* MemoryPoolTests.cpp */,
 				B60938A222AD7F43008B7C1E /* SimplePrimitiveTypeTests.cpp */,
 				B60938A422AD863C008B7C1E /* ComplexClassTests.cpp */,
+				B60938A822ADF9C5008B7C1E /* ComplexClass.hpp */,
 				B60938A022AD7DE0008B7C1E /* IntegerTests.cpp */,
 			);
 			name = tests;
@@ -240,6 +243,7 @@
 				B60938A722ADE786008B7C1E /* MemoryPoolTests.cpp in Sources */,
 				B609387D22ACF056008B7C1E /* main.cpp in Sources */,
 				B60938A322AD7F43008B7C1E /* SimplePrimitiveTypeTests.cpp in Sources */,
+				B60938A922ADF9C5008B7C1E /* ComplexClass.hpp in Sources */,
 				B60938A522AD863C008B7C1E /* ComplexClassTests.cpp in Sources */,
 				B60938A122AD7DE0008B7C1E /* IntegerTests.cpp in Sources */,
 			);
@@ -349,6 +353,7 @@
 				FRAMEWORK_SEARCH_PATHS = "$(PROJECT_DIR)/../gtests";
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = fast;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
 				GCC_WARN_UNDECLARED_SELECTOR = YES;

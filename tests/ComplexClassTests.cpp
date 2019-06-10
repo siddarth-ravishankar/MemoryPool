@@ -10,61 +10,15 @@
 #include <vector>
 #include "gtest/gtest.h"
 #include "MemoryPool.hpp"
+#include "ComplexClass.hpp"
 
 using namespace std;
-
-#define DEFAULT_LIMIT 100
 
 /*
  Test if MemoryPool can create and allocate memory for ComplexClass with multiple members - strinng, int, double and char*.
  */
 
-class ComplexClass1 {
-	string str;
-	int int_val;
-	double double_val;
-	char* char_ptr;
-	
-public:
-	
-	ComplexClass1() {}
-
-	ComplexClass1(string _str, int _int_val, double _double_val, char* _char_ptr) {
-		str = _str;
-		int_val = _int_val;
-		double_val = _double_val;
-		char_ptr = _char_ptr;
-	}
-	
-	string GetStr(){
-		return str;
-	}
-	int GetInt(){
-		return int_val;
-	}
-	double GetDouble(){
-		return double_val;
-	}
-	char* GetCharPtr(){
-		return char_ptr;
-	}
-};
-
 class ComplexClassTests : public ::testing::Test {
-	
-	string GenerateStr(){
-		return "A string " + to_string(rand());
-	}
-	int GenerateInt(){
-		return rand();
-	}
-	double GenerateDouble(){
-		return (double)rand() / (double)RAND_MAX;
-	}
-	char* GenerateCharPtr(){
-		string str = "A char ptr " + to_string(rand());
-		return (char*)str.c_str();
-	}
 	
 protected:
 	struct Expected {
@@ -96,7 +50,12 @@ protected:
 public:
 	void AllocAndInitRandomValues(int start, int end) {
 		for(int i=start; i<end; i++) {
-			Expected placeholder { GenerateStr(), GenerateInt(), GenerateDouble(), GenerateCharPtr() };
+			Expected placeholder {
+				ComplexClassFactory::GenerateStr(),
+				ComplexClassFactory::GenerateInt(),
+				ComplexClassFactory::GenerateDouble(),
+				ComplexClassFactory::GenerateCharPtr()
+			};
 			complexClassObjects[i] = pool.alloc(placeholder.str, placeholder.int_val, placeholder.double_val, placeholder.char_ptr);
 			expected[i] = placeholder;
 		}
