@@ -6,10 +6,18 @@
 //  Copyright © 2019 Siddarth Pc. All rights reserved.
 //
 
+#include <thread>
+#include <vector>
 #include "gtest/gtest.h"
 #include "MemoryPool.hpp"
 
 using namespace std;
+
+#define DEFAULT_LIMIT 100
+
+/*
+ Test if MemoryPool can create and allocate memory for ComplexClass with multiple members - strinng, int, double and char*.
+ */
 
 class ComplexClass1 {
 	string str;
@@ -19,9 +27,7 @@ class ComplexClass1 {
 	
 public:
 	
-	ComplexClass1() {
-		
-	}
+	ComplexClass1() {}
 
 	ComplexClass1(string _str, int _int_val, double _double_val, char* _char_ptr) {
 		str = _str;
@@ -46,8 +52,6 @@ public:
 
 class ComplexClassTests : public ::testing::Test {
 	
-	const int default_limit = 12;
-	
 	string GenerateStr(){
 		return "A string " + to_string(rand());
 	}
@@ -63,22 +67,21 @@ class ComplexClassTests : public ::testing::Test {
 	}
 	
 protected:
-	MemoryPool<ComplexClass1> pool;
-	int limit = default_limit;
-	
-	struct ComplexClassPlaceholder {
+	struct Expected {
 		string str;
 		int int_val;
 		double double_val;
 		char* char_ptr;
 	};
 	
-	vector<ComplexClassPlaceholder> placeholders;
-	vector<ComplexClass1*> complexClassObjects;
+	int limit = DEFAULT_LIMIT;
+	MemoryPool<ComplexClass1> pool;
+	vector<Expected> expected;						// List to store the values generated for test.
+	vector<ComplexClass1*> complexClassObjects;		// List containing objects for ComplexClass1 created using MemoryPool
 	
 	void SetUp() override {
 		srand((unsigned int)time(NULL));
-		placeholders = vector<ComplexClassPlaceholder>(limit);
+		expected = vector<Expected>(limit);
 		complexClassObjects = vector<ComplexClass1*>(limit);
 	}
 	
@@ -93,14 +96,9 @@ protected:
 public:
 	void AllocAndInitRandomValues(int start, int end) {
 		for(int i=start; i<end; i++) {
-			ComplexClassPlaceholder placeholder {
-				GenerateStr(),
-				GenerateInt(),
-				GenerateDouble(),
-				GenerateCharPtr(),
-			};
+			Expected placeholder { GenerateStr(), GenerateInt(), GenerateDouble(), GenerateCharPtr() };
 			complexClassObjects[i] = pool.alloc(placeholder.str, placeholder.int_val, placeholder.double_val, placeholder.char_ptr);
-			placeholders[i] = placeholder;
+			expected[i] = placeholder;
 		}
 	}
 };
@@ -122,10 +120,10 @@ TEST_F(ComplexClassTests, MultipleAllocations) {
 	AllocAndInitRandomValues(0, limit);
 	
 	for(int i=0; i<limit; i++) {
-		EXPECT_EQ(placeholders[i].str, complexClassObjects[i]->GetStr());
-		EXPECT_EQ(placeholders[i].int_val, complexClassObjects[i]->GetInt());
-		EXPECT_EQ(placeholders[i].double_val, complexClassObjects[i]->GetDouble());
-		EXPECT_EQ(placeholders[i].char_ptr, complexClassObjects[i]->GetCharPtr());
+		EXPECT_EQ(expected[i].str, complexClassObjects[i]->GetStr());
+		EXPECT_EQ(expected[i].int_val, complexClassObjects[i]->GetInt());
+		EXPECT_EQ(expected[i].double_val, complexClassObjects[i]->GetDouble());
+		EXPECT_EQ(expected[i].char_ptr, complexClassObjects[i]->GetCharPtr());
 	}
 	
 	FreeAllObjects();
@@ -142,15 +140,14 @@ TEST_F(ComplexClassTests, AllocateFromMultipleThreads) {
 		threads[i] = thread(&ComplexClassTests::AllocAndInitRandomValues, this, start, end);
 		start += limit / num_threads;
 	}
-	
 	for(int i=0; i<num_threads; i++)
 		threads[i].join();
 	
 	for(int i=0; i<limit; i++) {
-		EXPECT_EQ(placeholders[i].str, complexClassObjects[i]->GetStr());
-		EXPECT_EQ(placeholders[i].int_val, complexClassObjects[i]->GetInt());
-		EXPECT_EQ(placeholders[i].double_val, complexClassObjects[i]->GetDouble());
-		EXPECT_EQ(placeholders[i].char_ptr, complexClassObjects[i]->GetCharPtr());
+		EXPECT_EQ(expected[i].str, complexClassObjects[i]->GetStr());
+		EXPECT_EQ(expected[i].int_val, complexClassObjects[i]->GetInt());
+		EXPECT_EQ(expected[i].double_val, complexClassObjects[i]->GetDouble());
+		EXPECT_EQ(expected[i].char_ptr, complexClassObjects[i]->GetCharPtr());
 	}
 	
 	FreeAllObjects();

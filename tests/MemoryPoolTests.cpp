@@ -6,8 +6,8 @@
 //  Copyright © 2019 Siddarth Pc. All rights reserved.
 //
 
-#include "MemoryPool.hpp"
 #include "gtest/gtest.h"
+#include "MemoryPool.hpp"
 
 TEST(MemoryPoolTests, ShouldThrowOnBadAllocation) {
 	

@@ -6,29 +6,30 @@
 //  Copyright © 2019 Siddarth Pc. All rights reserved.
 //
 
-#include "MemoryPool.hpp"
 #include "gtest/gtest.h"
+#include "MemoryPool.hpp"
+
+/*
+ Test if MemoryPool can create and allocate memory for primitive data types - int, char annd double.
+ */
 
 TEST(SimplePrimitiveTypeTests, Int) {
 	MemoryPool<int> pool;
-	int *a = pool.alloc();
-	*a = 999;
-	EXPECT_EQ(*a, 999);
+	int *a = pool.alloc(999);
+	EXPECT_EQ(999, *a);
 	pool.free(a);
 }
 
 TEST(SimplePrimitiveTypeTests, Double) {
 	MemoryPool<double> pool;
-	double *a = pool.alloc();
-	*a = 1234.567895;
-	EXPECT_EQ(*a, 1234.567895);
+	double *a = pool.alloc(1234.567895);
+	EXPECT_EQ(1234.567895, *a);
 	pool.free(a);
 }
 
 TEST(SimplePrimitiveTypeTests, Char) {
 	MemoryPool<char> pool;
-	char *c = pool.alloc();
-	*c = 'z';
-	EXPECT_EQ(*c, 'z');
+	char *c = pool.alloc('z');
+	EXPECT_EQ('z', *c);
 	pool.free(c);
 }

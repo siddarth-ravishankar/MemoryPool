@@ -12,18 +12,20 @@
 #include <thread>
 #include <forward_list>
 
+// Default MemoryPool size is 16KB.
 #define DEFAULT_POOL_SIZE 16 * 1024
 
 template <class ELEM_TYPE>
 class MemoryPool {
 	
-	size_t segment_size;
-	int pool_size;
+	std::mutex segment_mutex;
+	
 	void* head;
+	int pool_size;
+	size_t segment_size;
 	ELEM_TYPE* last_segment;
 	ELEM_TYPE* tail_segment;
 	std::forward_list<ELEM_TYPE*> available_segments;
-	std::mutex segment_mutex;
 	
 	ELEM_TYPE* getTailSegment();
 	ELEM_TYPE* getNextAvailableSegment();
