@@ -10,7 +10,7 @@
 #define MemoryPool_hpp
 
 #include <thread>
-#include <forward_list>
+#include <vector>
 
 // Default MemoryPool size is 16KB.
 #define DEFAULT_POOL_SIZE 16 * 1024
@@ -20,14 +20,13 @@ class MemoryPool {
 	
 	std::mutex segment_mutex;
 	
-	void* head;
+	void* start_address;
 	int pool_size;
 	size_t segment_size;
 	ELEM_TYPE* last_segment;
 	ELEM_TYPE* tail_segment;
-	std::forward_list<ELEM_TYPE*> available_segments;
+	std::vector<ELEM_TYPE*> available_segments;
 	
-	ELEM_TYPE* getTailSegment();
 	ELEM_TYPE* getNextAvailableSegment();
 	
 public:
@@ -46,26 +45,15 @@ template <class ELEM_TYPE>
 MemoryPool<ELEM_TYPE>::MemoryPool(const int _pool_size) {
 	
 	pool_size = _pool_size;
-	head = std::malloc(pool_size);
+	start_address = std::malloc(pool_size);
 	segment_size = sizeof(ELEM_TYPE);
-	tail_segment = reinterpret_cast<ELEM_TYPE*>(head);
-	last_segment = reinterpret_cast<ELEM_TYPE*>(head) + pool_size - segment_size;
+	tail_segment = reinterpret_cast<ELEM_TYPE*>(start_address);
+	last_segment = reinterpret_cast<ELEM_TYPE*>(start_address) + pool_size - segment_size;
 }
 
 template <class ELEM_TYPE>
 MemoryPool<ELEM_TYPE>::~MemoryPool() {
-	std::free(head);
-}
-
-template <class ELEM_TYPE>
-ELEM_TYPE* MemoryPool<ELEM_TYPE>::getTailSegment() {
-	
-	if (tail_segment > last_segment)
-		throw std::bad_alloc();
-	
-	ELEM_TYPE* next_segment = tail_segment;
-	tail_segment++;
-	return next_segment;
+	std::free(start_address);
 }
 
 template <class ELEM_TYPE>
@@ -75,12 +63,17 @@ ELEM_TYPE* MemoryPool<ELEM_TYPE>::getNextAvailableSegment() {
 
 	std::lock_guard<std::mutex> lock(segment_mutex);
 	{
-		if(available_segments.empty()) {
-			next_available_segmennt = getTailSegment();
+		if (tail_segment <= last_segment) {
+			next_available_segmennt = tail_segment;
+			tail_segment++;
+		}
+		else if (!available_segments.empty()) {
+			
+			next_available_segmennt = available_segments.back();
+			available_segments.pop_back();
 		}
 		else {
-			next_available_segmennt = available_segments.front();
-			available_segments.pop_front();
+			throw std::bad_alloc();
 		}
 	}
 	
@@ -99,7 +92,7 @@ template <class ELEM_TYPE>
 void MemoryPool<ELEM_TYPE>::free(ELEM_TYPE* ptr) {
 	
 	std::lock_guard<std::mutex> lock(segment_mutex);
-	available_segments.push_front(ptr);
+	available_segments.push_back(ptr);
 }
 
 #endif /* MemoryPool_hpp */
