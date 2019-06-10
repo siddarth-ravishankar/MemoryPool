@@ -15,6 +15,8 @@
 		B60938A522AD863C008B7C1E /* ComplexClassTests.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B60938A422AD863C008B7C1E /* ComplexClassTests.cpp */; };
 		B60938A722ADE786008B7C1E /* MemoryPoolTests.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B60938A622ADE786008B7C1E /* MemoryPoolTests.cpp */; };
 		B60938A922ADF9C5008B7C1E /* ComplexClass.hpp in Sources */ = {isa = PBXBuildFile; fileRef = B60938A822ADF9C5008B7C1E /* ComplexClass.hpp */; };
+		B60938D622AE3940008B7C1E /* Benchmark.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B60938D522AE3940008B7C1E /* Benchmark.cpp */; };
+		B60938D722AE3954008B7C1E /* libbenchmark.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B60938D322AE384D008B7C1E /* libbenchmark.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -31,7 +33,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		B609387122ACEFF0008B7C1E /* ThreadSafeMemoryPool */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = ThreadSafeMemoryPool; sourceTree = BUILT_PRODUCTS_DIR; };
+		B609387122ACEFF0008B7C1E /* MemoryPoolTests */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = MemoryPoolTests; sourceTree = BUILT_PRODUCTS_DIR; };
 		B609387C22ACF056008B7C1E /* main.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 		B609387F22ACF18C008B7C1E /* MemoryPool.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = MemoryPool.hpp; sourceTree = "<group>"; };
 		B609388322ACF2CA008B7C1E /* gtest-matchers.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "gtest-matchers.h"; sourceTree = "<group>"; };
@@ -64,6 +66,9 @@
 		B60938A422AD863C008B7C1E /* ComplexClassTests.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = ComplexClassTests.cpp; sourceTree = "<group>"; };
 		B60938A622ADE786008B7C1E /* MemoryPoolTests.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = MemoryPoolTests.cpp; sourceTree = "<group>"; };
 		B60938A822ADF9C5008B7C1E /* ComplexClass.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = ComplexClass.hpp; sourceTree = "<group>"; };
+		B60938C622AE30D9008B7C1E /* benchmark.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = benchmark.h; sourceTree = "<group>"; };
+		B60938D322AE384D008B7C1E /* libbenchmark.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libbenchmark.a; sourceTree = "<group>"; };
+		B60938D522AE3940008B7C1E /* Benchmark.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Benchmark.cpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -72,6 +77,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				B609389E22ACF2CA008B7C1E /* gtest.framework in Frameworks */,
+				B60938D722AE3954008B7C1E /* libbenchmark.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -91,7 +97,7 @@
 		B609387222ACEFF0008B7C1E /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				B609387122ACEFF0008B7C1E /* ThreadSafeMemoryPool */,
+				B609387122ACEFF0008B7C1E /* MemoryPoolTests */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -99,6 +105,7 @@
 		B609387B22ACF056008B7C1E /* tests */ = {
 			isa = PBXGroup;
 			children = (
+				B60938D522AE3940008B7C1E /* Benchmark.cpp */,
 				B609387C22ACF056008B7C1E /* main.cpp */,
 				B60938A622ADE786008B7C1E /* MemoryPoolTests.cpp */,
 				B60938A222AD7F43008B7C1E /* SimplePrimitiveTypeTests.cpp */,
@@ -122,6 +129,7 @@
 		B609388022ACF2CA008B7C1E /* gtests */ = {
 			isa = PBXGroup;
 			children = (
+				B60938D322AE384D008B7C1E /* libbenchmark.a */,
 				B609388122ACF2CA008B7C1E /* include */,
 				B609389D22ACF2CA008B7C1E /* gtest.framework */,
 			);
@@ -132,6 +140,7 @@
 		B609388122ACF2CA008B7C1E /* include */ = {
 			isa = PBXGroup;
 			children = (
+				B60938C522AE30D9008B7C1E /* benchmark */,
 				B609388222ACF2CA008B7C1E /* gtest */,
 			);
 			path = include;
@@ -184,12 +193,20 @@
 			path = custom;
 			sourceTree = "<group>";
 		};
+		B60938C522AE30D9008B7C1E /* benchmark */ = {
+			isa = PBXGroup;
+			children = (
+				B60938C622AE30D9008B7C1E /* benchmark.h */,
+			);
+			path = benchmark;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		B609387022ACEFF0008B7C1E /* ThreadSafeMemoryPool */ = {
+		B609387022ACEFF0008B7C1E /* MemoryPoolTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = B609387822ACEFF0008B7C1E /* Build configuration list for PBXNativeTarget "ThreadSafeMemoryPool" */;
+			buildConfigurationList = B609387822ACEFF0008B7C1E /* Build configuration list for PBXNativeTarget "MemoryPoolTests" */;
 			buildPhases = (
 				B609386D22ACEFF0008B7C1E /* Sources */,
 				B609386E22ACEFF0008B7C1E /* Frameworks */,
@@ -199,9 +216,9 @@
 			);
 			dependencies = (
 			);
-			name = ThreadSafeMemoryPool;
+			name = MemoryPoolTests;
 			productName = ThreadSafeMemoryPool;
-			productReference = B609387122ACEFF0008B7C1E /* ThreadSafeMemoryPool */;
+			productReference = B609387122ACEFF0008B7C1E /* MemoryPoolTests */;
 			productType = "com.apple.product-type.tool";
 		};
 /* End PBXNativeTarget section */
@@ -230,7 +247,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				B609387022ACEFF0008B7C1E /* ThreadSafeMemoryPool */,
+				B609387022ACEFF0008B7C1E /* MemoryPoolTests */,
 			);
 		};
 /* End PBXProject section */
@@ -241,6 +258,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				B60938A722ADE786008B7C1E /* MemoryPoolTests.cpp in Sources */,
+				B60938D622AE3940008B7C1E /* Benchmark.cpp in Sources */,
 				B609387D22ACF056008B7C1E /* main.cpp in Sources */,
 				B60938A322AD7F43008B7C1E /* SimplePrimitiveTypeTests.cpp in Sources */,
 				B60938A922ADF9C5008B7C1E /* ComplexClass.hpp in Sources */,
@@ -304,6 +322,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				LIBRARY_SEARCH_PATHS = "$(PROJECT_DIR)/../gtests";
 				MACOSX_DEPLOYMENT_TARGET = 10.14;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
@@ -360,6 +379,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				LIBRARY_SEARCH_PATHS = "$(PROJECT_DIR)/../gtests";
 				MACOSX_DEPLOYMENT_TARGET = 10.14;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
@@ -396,7 +416,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		B609387822ACEFF0008B7C1E /* Build configuration list for PBXNativeTarget "ThreadSafeMemoryPool" */ = {
+		B609387822ACEFF0008B7C1E /* Build configuration list for PBXNativeTarget "MemoryPoolTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				B609387922ACEFF0008B7C1E /* Debug */,
