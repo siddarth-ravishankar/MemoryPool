@@ -9,15 +9,7 @@
 #include "MemoryPool.hpp"
 #include "gtest/gtest.h"
 
-class SimplePrimitiveTypeTests : public ::testing::Test {
-protected:
-	// void SetUp() override {}
-	
-	// void TearDown() override {}
-	
-};
-
-TEST_F(SimplePrimitiveTypeTests, Int) {
+TEST(SimplePrimitiveTypeTests, Int) {
 	MemoryPool<int> pool;
 	int *a = pool.alloc();
 	*a = 999;
@@ -25,7 +17,7 @@ TEST_F(SimplePrimitiveTypeTests, Int) {
 	pool.free(a);
 }
 
-TEST_F(SimplePrimitiveTypeTests, Double) {
+TEST(SimplePrimitiveTypeTests, Double) {
 	MemoryPool<double> pool;
 	double *a = pool.alloc();
 	*a = 1234.567895;
@@ -33,7 +25,7 @@ TEST_F(SimplePrimitiveTypeTests, Double) {
 	pool.free(a);
 }
 
-TEST_F(SimplePrimitiveTypeTests, Char) {
+TEST(SimplePrimitiveTypeTests, Char) {
 	MemoryPool<char> pool;
 	char *c = pool.alloc();
 	*c = 'z';

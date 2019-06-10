@@ -59,7 +59,7 @@ template <class ELEM_TYPE>
 ELEM_TYPE* MemoryPool<ELEM_TYPE>::getTailSegment() {
 	
 	if (tail_segment > last_segment)
-		throw "Unable to allocate memory. Memory pool depleated.";
+		throw std::bad_alloc();
 	
 	ELEM_TYPE* next_segment = tail_segment;
 	tail_segment++;
@@ -90,7 +90,6 @@ template <class... Args>
 ELEM_TYPE* MemoryPool<ELEM_TYPE>::alloc(Args&&... args) {
 	
 	ELEM_TYPE* ptr = getNextAvailableSegment();
-	
 	return new(ptr) ELEM_TYPE(std::forward<Args>(args)...);
 }
 
